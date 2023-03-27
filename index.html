@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <title>Condition Monitoring Dashboard</title>
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/dashboard/">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    
+    <!-- Custom styles for this template -->
+    <link href="dashboard.css" rel="stylesheet">
+  </head>
+  <body>
+    
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">PubNub</a>
+  <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="navbar-nav">
+    <div class="nav-item text-nowrap">
+      <!-- <a class="nav-link px-3" href="#">Sign out</a> -->
+    </div>
+  </div>
+</header>
+<div class="container-fluid">
+  <div class="row">
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+      <div class="position-sticky pt-3">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">
+              <span data-feather="home"></span>
+              Dashboard
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="settings"></span>
+              Settings
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="users"></span>
+              User Manager
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="cpu"></span>
+              Device Manager
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="database"></span>
+              Integrations
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Condition Monitoring Dashboard</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+        
+        </div>
+      </div>
+      <div>
+        </div>
+        <h3>Compressor Sensor</h3>
+        <canvas class="my-4 w-100 chartjs-render-monitor" id="sensorchart1" style="display: block; width: 1540px; height: 350px;" width="1540" height="350"></canvas>
+        <div class="container">
+          <div class="row">
+            <div class="col">
+              
+              <div class="card text-white mb-3 bg-danger" id="C1OSD" style="max-width: 18rem;">
+                <div class="card-header">Operational Status</div>
+                <div class="card-body">
+                  <h5 class="card-title">Danger</h5>
+                  <p class="card-text">Data is not being received and is not being monitored. Check hardware immediately for faults.</p>
+                  <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#OPStatModal">
+                    More Info
+                  </button>
+                </div>
+              </div>
+              <div class="card text-dark mb-3 bg-warning d-none" id="C1OSW" style="max-width: 18rem;">
+                <div class="card-header">Operational Status</div>
+                <div class="card-body">
+                  <h5 class="card-title">Warning</h5>
+                  <p class="card-text">Sensor output values are indicating low or no vibrations. The monitored device may be offline or inactive.</p>
+                  <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#OPStatModal">
+                    More Info
+                  </button>
+                </div>
+              </div>
+              <div class="card text-white mb-3 bg-success d-none" id="C1OSN" style="max-width: 18rem;">
+                <div class="card-header">Operational Status</div>
+                <div class="card-body">
+                  <h5 class="card-title">Normal</h5>
+                  <p class="card-text">Data is being recived and vibrations are shown above.</p>
+                  <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#OPStatModal">
+                    More Info
+                  </button>
+                </div>
+              </div>
+              
+              
+            </div>
+            <div class="col">
+              <div class="card text-white mb-3 bg-danger d-none" id="C1VSD" style="max-width: 18rem;">
+                <div class="card-header">Vibration Status</div>
+                <div class="card-body">
+                  <h5 class="card-title">Danger</h5>
+                  <p class="card-text">Extreme vibrations detected. Check monitored hardware for potential issues. Exercise caution.</p>
+                  <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#VStatModal">
+                    More Info
+                  </button>
+                </div>
+              </div>
+              <div class="card text-dark mb-3 bg-warning d-none" id="C1VSW" style="max-width: 18rem;">
+                <div class="card-header">Vibration Status</div>
+                <div class="card-body">
+                  <h5 class="card-title">Medium</h5>
+                  <p class="card-text">Significant vibrations detected within normal range.</p>
+                  <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#VStatModal">
+                    More Info
+                  </button>
+                </div>
+              </div>
+              <div class="card text-white mb-3 bg-success" id="C1VSS" style="max-width: 18rem;">
+                <div class="card-header">Vibration Status</div>
+                <div class="card-body">
+                  <h5 class="card-title">Low</h5>
+                  <p class="card-text">Little or no vibration activity.</p>
+                  <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#VStatModal">
+                    More Info
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="card border-dark mb-3" style="max-width: 18rem;">
+              <div class="card-header">Live Data Stream</div>
+              <div class="card-body">
+                <ul class="list-group card-text">
+                  <li class="list-group-item">Last X: <span id="c1_last_x"></span></li>
+                  <li class="list-group-item">Last Y: <span id="c1_last_y"></span></li>
+                  <li class="list-group-item">X Max: <span id="c1_max_x"></span></li>
+                  <li class="list-group-item">Y Max: <span id="c1_max_y"></span></li>
+                </ul>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div>
+        <h3>Fan Sensor</h3>
+        <canvas class="my-4 w-100 chartjs-render-monitor" id="sensorchart2" style="display: block; width: 1540px; height: 350px;" width="1540" height="350"></canvas>
+        <div class="container">
+          <div class="row">
+            <div class="col">
+              
+              <div class="card text-white mb-3 bg-danger" id="C2OSD" style="max-width: 18rem;">
+                <div class="card-header">Operational Status</div>
+                <div class="card-body">
+                  <h5 class="card-title">Danger</h5>
+                  <p class="card-text">Data is not being received and is not being monitored. Check hardware immediately for faults.</p>
+                  <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#OPStatModal">
+                    More Info
+                  </button>
+                </div>
+              </div>
+              <div class="card text-dark mb-3 bg-warning d-none" id="C2OSW" style="max-width: 18rem;">
+                <div class="card-header">Operational Status</div>
+                <div class="card-body">
+                  <h5 class="card-title">Warning</h5>
+                  <p class="card-text">Sensor output values are indicating low or no vibrations. The monitored device may be offline or inactive.</p>
+                  <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#OPStatModal">
+                    More Info
+                  </button>
+                </div>
+              </div>
+              <div class="card text-white mb-3 bg-success d-none" id="C2OSN" style="max-width: 18rem;">
+                <div class="card-header">Operational Status</div>
+                <div class="card-body">
+                  <h5 class="card-title">Normal</h5>
+                  <p class="card-text">Data is being recived and vibrations are shown above.</p>
+                  <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#OPStatModal">
+                    More Info
+                  </button>
+                </div>
+              </div>
+              
+            </div>
+            <div class="col">
+              <div class="card text-white mb-3 bg-danger d-none" id="C2VSD" style="max-width: 18rem;">
+                <div class="card-header">Vibration Status</div>
+                <div class="card-body">
+                  <h5 class="card-title">Danger</h5>
+                  <p class="card-text">Extreme vibrations detected. Check monitored hardware for potential issues. Exercise caution.</p>
+                  <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#VStatModal">
+                    More Info
+                  </button>
+                </div>
+              </div>
+              <div class="card text-dark mb-3 bg-warning d-none" id="C2VSW" style="max-width: 18rem;">
+                <div class="card-header">Vibration Status</div>
+                <div class="card-body">
+                  <h5 class="card-title">Medium</h5>
+                  <p class="card-text">Significant vibrations detected within normal range.</p>
+                  <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#VStatModal">
+                    More Info
+                  </button>
+                </div>
+              </div>
+              <div class="card text-white mb-3 bg-success" id="C2VSS" style="max-width: 18rem;">
+                <div class="card-header">Vibration Status</div>
+                <div class="card-body">
+                  <h5 class="card-title">Low</h5>
+                  <p class="card-text">Little or no vibration activity.</p>
+                  <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#VStatModal">
+                    More Info
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card border-dark mb-3" style="max-width: 18rem;">
+                <div class="card-header">Live Data Stream</div>
+                <div class="card-body">
+                    <ul class="list-group card-text">
+                    <li class="list-group-item">Last X: <span id="c2_last_x"></span></li>
+                    <li class="list-group-item">Last Y: <span id="c2_last_y"></span></li>
+                    <li class="list-group-item">X Max: <span id="c2_max_x"></span></li>
+                    <li class="list-group-item">Y Max: <span id="c2_max_y"></span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    </main>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Predictive Maintenance Dashboard</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Welcome to the Predictive Maintenance Dashboard Demo powered by PubNub. This demo shows real data from an industrial programmable logic controller connected to vibration sensors.
+         This data is used to anticipate when equipment is about to fail or when maintenance is needed. Some features of this dashboard are disabled. Send an email to
+          <a href="mailto:devrel@pubnub.com">devrel@pubnub.com</a> to learn more about how to create your own predictive maintenance monitoring system powered by PubNub.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Understood</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="OPStatModal" tabindex="-1" role="dialog" aria-labelledby="OPStatModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="OPStatModalLabel">Operational Status Info</h5>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h5>Danger</h5>
+        <p>Data is not being received and is not being monitored. Check hardware immediately for faults.</p>
+        <h5>Warning</h5>
+        <p>Sensor output values are indicating low or no vibrations. The monitored device may be offline or inactive.</p>
+        <h5>Normal</h5>
+        <p>Data is being recived and vibrations are shown.</p>            
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="VStatModal" tabindex="-1" role="dialog" aria-labelledby="VStatModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="VStatModalLabel">Vibration Status Info</h5>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h5>Danger</h5>
+        <p>Extreme vibrations detected. Check monitored hardware for potential issues. Exercise caution.</p>
+        <h5>Medium</h5>
+        <p>Significant vibrations detected within normal range.</p>
+        <h5>Low</h5>
+        <p>Little or no vibration activity.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+      <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.7.2.2.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
+      <script src="dashboard.js"></script>
+  </body>
+</html>
