@@ -291,7 +291,7 @@ document.getElementById('staticBackdrop').addEventListener('hidden.bs.modal', ()
   actionCompleted({action: 'Read Demo Info', windowLocation: window.location.href}); // This is for the interactive demo on PubNub.com. It is not part of the demo of this application. 
 })
 document.getElementById('VStatModal').addEventListener('shown.bs.modal', () => {
-  actionCompleted({action: 'View Operational Info', windowLocation: window.location.href}); // This is for the interactive demo on PubNub.com. It is not part of the demo of this application. 
+  actionCompleted({action: 'View Vibration Info', windowLocation: window.location.href}); // This is for the interactive demo on PubNub.com. It is not part of the demo of this application. 
 })
 document.getElementById('OPStatModal').addEventListener('shown.bs.modal', () => {
   actionCompleted({action: 'View Operational Info', windowLocation: window.location.href}); // This is for the interactive demo on PubNub.com. It is not part of the demo of this application. 
