@@ -3,9 +3,9 @@ This demo shows how you can build a industrial quality Condition Monitoring Dash
 
 Please see the gh-pages branch for the dashboard files. The main branch contains the firmware for the programmable logic controller that streams the vibration data using PubNub to the condition moinitoring dashboard.
 
-Try this demo here: [COMING SOON]
+Try this demo here: https://www.pubnub.com/demos/condition-dashboard/
 
-Learn more from the complete tutorial here: [COMING SOON]
+Learn more from the complete tutorial here: https://pubnub.com/tutorials/condition-dashboard/
 
 Data is collected using a Programmable Logic Controller (PLC) connected to vibration sensors. The PLC reports the X and Y values from the vibration sensors that indicate how much the monitored equipment is moving. Since this is real data, the dashboard will show various states as the equipment operates. 
 Vibration and other condition sensors can be used to make informed maintenance decisions and predict when maintenance will be needed to avoid downtime. 
